@@ -5,6 +5,7 @@ export function Share(vm, data = {}, computed = {}, methods = {}) {
     return new Vue({
         data: function() {
             return {
+                dev_interface: process.env.VUE_APP_UI == 'dev',
                 vm: vm,
                 ...data
             };

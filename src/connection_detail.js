@@ -66,7 +66,8 @@ class ConnectionDetail {
     }
 
     async send_message(msg, set_return_route = true) {
-        console.log("Sending message:", msg);
+        if (!msg['@type'].includes('trust_ping'))
+            console.log("Sending message:", msg);
 
         if (!('@id' in msg)) { // Ensure @id is populated
             msg['@id'] = uuidv4().toString();
@@ -133,7 +134,8 @@ class ConnectionDetail {
     }
 
     process_inbound(msg) {
-        console.log('Received Message:', msg);
+        if (!msg['@type'].includes('trust_ping'))
+            console.log('Received Message:', msg);
         this.inbound_processor(msg);
     }
 
